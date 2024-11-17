@@ -1,0 +1,45 @@
+[data-theme="light"] {
+    --primary-color: hsla(216, 6%, 85%, 0.497);
+    --secondary-color: #f5f5f5;
+    --text-primary: #333333;
+    --text-secondary: #666666;
+}
+
+[data-theme="light"] body {
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .main-nav {
+    background: rgba(100, 97, 97, 0.345);
+}
+
+[data-theme="light"] .nav-menu li a {
+    color: #ffffff;
+    transition: color 0.3s ease;
+    font-weight: 500;
+    font-size: 1.2em;
+}
+
+[data-theme="light"] .nav-menu li a:hover {
+    color: #ffcc00;
+}
+
+[data-theme="light"] .about-section {
+    background: var(--secondary-color);
+}
+  text-align: center;
+}
+  [data-theme="light"] .social-icons {
+    display: inline-block;
+  }
+
+  [data-theme="light"] .social-icons a {
+    margin: 0 10px;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+  }
+
+  [data-theme="light"] .social-icons a:hover {
+    color: #ffcc00;
+  }
