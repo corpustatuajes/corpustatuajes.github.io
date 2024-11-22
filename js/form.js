@@ -1,42 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('contactModal');
-    const btn = document.querySelector('.cta-button');
-    const span = document.querySelector('.close-button');
+    const ctaButton = document.querySelector('.cta-button');
+    const modal = document.querySelector('.contact-form-modal');
+    const form = document.getElementById('contactForm');
+    const closeButton = document.querySelector('.close-button');
 
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
+    ctaButton.addEventListener('click', () => {
+        modal.style.display = 'block';
+    });
 
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
+    closeButton.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        let templateParams = {
-            from_name: this.nombre.value,
-            email_id: this.email.value,
-            phone: this.telefono.value,
-            message: this.mensaje.value
-        };
-
-        emailjs.send('service_pvzp9pl', 'template_x1sf37c', templateParams, 'TU_EoMYF81iKI_1Eel_1')
-            .then(function(response) {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        emailjs.sendForm('service_pvzp9pl', 'template_wrk5iq8', form, 'aBZ2qXXXYT52_fSkN')
+            .then((response) => {
                 console.log('SUCCESS!', response.status, response.text);
-                alert('¡Mensaje enviado exitosamente!');
-                modal.style.display = "none";
-                document.getElementById('contactForm').reset();
+                alert('¡Mensaje enviado con éxito!');
+                form.reset();
+                modal.style.display = 'none';
             })
-            .catch(function(error) {
-                console.log('FAILED...', error);
-                alert('Error al enviar el mensaje: ' + error.text);
+            .catch((error) => {
+                console.error('FAILED...', error);
+                alert('Error específico: ' + error.text);
             });
     });
+
+    window.onclick = (e) => {
+        if (e.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
 });
