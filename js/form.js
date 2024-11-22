@@ -28,13 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         emailjs.send('service_pvzp9pl', 'template_x1sf37c', templateParams, 'TU_EoMYF81iKI_1Eel_1')
-            .then(function() {
+            .then(function(response) {
                 alert('¡Mensaje enviado exitosamente!');
-                modal.style.display = "none";
                 document.getElementById('contactForm').reset();
             })
             .catch(function(error) {
-                alert('Error al enviar el mensaje: ' + error);
+                alert('Error al enviar el mensaje: ' + error.text);
             });
     });
 });
