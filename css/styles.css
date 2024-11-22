@@ -520,7 +520,7 @@ p {
 }
 
 .contact-section {
-    background-image: url('/src/assets/img/backgrund/RUSTY\ ATTACK\ DEMO.jpg');
+    background-image: url('/src/assets/img/backgrund/fondo.png');
     background-size: cover;
     background-position: center;
     min-height: 400px;
@@ -571,13 +571,13 @@ p {
 }
 
 .contact-info a:hover {
-    color: #FFD700;
+    color: #ff4400;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .social-icon:hover {
-    color: #FFD700;
+    color: #ff5e00;
     transform: scale(1.1);
     transition: all 0.3s ease;
 }

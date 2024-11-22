@@ -1,47 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const ctaButton = document.querySelector('.cta-button');
-    const modal = document.querySelector('.contact-form-modal');
-    const form = document.getElementById('contactForm');
+    const modal = document.getElementById('contactModal');
+    const btn = document.querySelector('.cta-button');
+    const span = document.querySelector('.close-button');
 
-    // Inicializa EmailJS con tu Public Key
-    emailjs.init("EoMYF81iKI_1Eel_1");
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
 
-    ctaButton.addEventListener('click', () => {
-        modal.style.display = 'block';
-    });
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const formData = new FormData(form);
-        const templateParams = {
-            to_email: 'corpustatuajes@gmail.com',
-            from_name: formData.get('nombre'),
-            from_email: formData.get('email'),
-            phone: formData.get('telefono'),
-            message: formData.get('mensaje')
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        let templateParams = {
+            from_name: this.nombre.value,
+            email_id: this.email.value,
+            phone: this.telefono.value,
+            message: this.mensaje.value
         };
 
-        try {
-            await emailjs.send(
-                'service_snsbak9',
-                'template_grgy6bc',
-                templateParams
-            );
-            
-            modal.style.display = 'none';
-            form.reset();
-            alert('¡Mensaje enviado con éxito!');
-        } catch (error) {
-            console.error('Error:', error);
-            alert('Hubo un error al enviar el mensaje');
-        }
-    });
-
-    // Cerrar modal al hacer clic fuera
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.style.display = 'none';
-        }
+        emailjs.send('service_pvzp9pl', 'template_x1sf37c', templateParams, 'TU_EoMYF81iKI_1Eel_1')
+            .then(function() {
+                alert('¡Mensaje enviado exitosamente!');
+                modal.style.display = "none";
+                document.getElementById('contactForm').reset();
+            })
+            .catch(function(error) {
+                alert('Error al enviar el mensaje: ' + error);
+            });
     });
 });
